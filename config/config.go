@@ -23,6 +23,11 @@ func ENV() string {
 	return os.Getenv("ENV")
 }
 
+// HTTPPort :nodoc:
+func HTTPPort() string {
+	return os.Getenv("PORT")
+}
+
 // DBHost :nodoc:
 func DBHost() string {
 	return os.Getenv("DB_HOST")
