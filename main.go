@@ -1,14 +1,11 @@
 /*
-Copyright © 2023 BLESSY <frederichblessy@gmail.com>
+Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 
 */
 package main
 
-import (
-	"github.com/notblessy/go-listing/db"
-)
+import "github.com/notblessy/go-listing/console"
 
 func main() {
-	psql := db.InitDB()
-	defer db.CloseDB(psql)
+	console.Execute()
 }
