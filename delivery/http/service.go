@@ -1,18 +1,8 @@
 package http
 
 import (
-	"errors"
-
 	"github.com/labstack/echo/v4"
 	"github.com/notblessy/go-listing/model"
-)
-
-var (
-	// ErrBadRequest :nodoc:
-	ErrBadRequest = errors.New("bad request")
-
-	// ErrNotFound :nodoc:
-	ErrNotFound = errors.New("not found")
 )
 
 // HTTPService :nodoc:
@@ -33,4 +23,5 @@ func (h *HTTPService) RegisterProductUsecase(p model.ProductUsecase) {
 // Routes :nodoc:
 func (h *HTTPService) Routes(route *echo.Echo) {
 	route.POST("/products", h.createProductHandler)
+	route.GET("/products", h.findAllProductHandler)
 }

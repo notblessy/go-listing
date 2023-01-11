@@ -7,6 +7,11 @@ import (
 	"time"
 )
 
+type Sort struct {
+	Field string
+	Type  string
+}
+
 func Dump(data interface{}) string {
 	dataByte, _ := json.Marshal(data)
 	return string(dataByte)

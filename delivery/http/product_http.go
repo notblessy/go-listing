@@ -1,6 +1,8 @@
 package http
 
 import (
+	"fmt"
+
 	"github.com/labstack/echo/v4"
 	"github.com/notblessy/go-listing/model"
 	"github.com/notblessy/go-listing/utils"
@@ -14,29 +16,48 @@ func (h *HTTPService) createProductHandler(c echo.Context) error {
 	var data model.Product
 
 	if err := c.Bind(&data); err != nil {
-		logger.Error(ErrBadRequest)
-		return utils.ResponseBadRequest(c, &utils.Response{
+		logger.Error(err)
+		return utils.ResponseBadRequest(c, &utils.ResponseError{
 			Message: err.Error(),
 		})
 	}
 
-	// if err := c.Validate(&data); err != nil {
-	// 	logger.Error(ErrBadRequest)
-	// 	return utils.ResponseBadRequest(c, &utils.Response{
-	// 		Message: fmt.Sprintf("error validate: %s", ErrBadRequest),
-	// 		Data:    ErrBadRequest,
-	// 	})
-	// }
+	if err := c.Validate(&data); err != nil {
+		logger.Error(err)
+		return utils.ResponseBadRequest(c, &utils.ResponseError{
+			Message: fmt.Sprintf("error validate: %s", err),
+		})
+	}
 
 	id, err := h.productUsecase.Create(&data)
 	if err != nil {
 		logger.Error(err)
-		return utils.ResponseError(c, &utils.Response{
+		return utils.ResponseInternalServerError(c, &utils.ResponseError{
 			Message: err.Error(),
 		})
 	}
 
-	return utils.ResponseOK(c, &utils.Response{
+	return utils.ResponseOK(c, &utils.ResponseSuccess{
 		Data: id,
+	})
+}
+
+func (h *HTTPService) findAllProductHandler(c echo.Context) error {
+	logger := logrus.WithField("context", utils.Dump(c))
+
+	req := model.ProductQuery{
+		Sort: c.QueryParam("sort"),
+	}
+
+	products, err := h.productUsecase.FindAll(&req)
+	if err != nil {
+		logger.Error(err)
+		return utils.ResponseInternalServerError(c, &utils.ResponseError{
+			Message: fmt.Sprintf("%s", err),
+		})
+	}
+
+	return utils.ResponseOK(c, &utils.ResponseSuccess{
+		Data: products,
 	})
 }

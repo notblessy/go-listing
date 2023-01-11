@@ -34,3 +34,17 @@ func (u *productUsecase) Create(product *model.Product) (string, error) {
 
 	return product.ID, nil
 }
+
+// FindAll :nodoc:
+func (u *productUsecase) FindAll(req *model.ProductQuery) (*[]model.Product, error) {
+	products, err := u.productRepo.FindAll(req)
+	if err != nil {
+		logrus.WithFields(logrus.Fields{
+			"productQuery": utils.Dump(req),
+		}).Error(err)
+
+		return nil, err
+	}
+
+	return products, nil
+}
