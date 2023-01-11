@@ -30,6 +30,9 @@ func runHTTP(cmd *cobra.Command, args []string) {
 	psql := db.InitDB()
 	defer db.CloseDB(psql)
 
+	redis := db.InitPool().Get()
+	defer redis.Close()
+
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
@@ -37,7 +40,7 @@ func runHTTP(cmd *cobra.Command, args []string) {
 	}))
 	e.Validator = &utils.CustomValidator{Validator: validator.New()}
 
-	productRepo := repository.NewProductRepository(psql)
+	productRepo := repository.NewProductRepository(psql, redis)
 	productUsecase := usecase.NewProductUsecase(productRepo)
 
 	httpSvc := http.NewHTTPService()

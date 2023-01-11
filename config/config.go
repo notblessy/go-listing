@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 
 	"github.com/joho/godotenv"
 )
@@ -51,4 +52,38 @@ func DBName() string {
 // DBPort :nodoc:
 func DBPort() string {
 	return os.Getenv("DB_PORT")
+}
+
+// RedisHost :nodoc:
+func RedisHost() string {
+	return os.Getenv("REDIS_HOST")
+}
+
+// RedisPort :nodoc:
+func RedisPort() string {
+	return os.Getenv("REDIS_PORT")
+}
+
+// RedisDB :nodoc:
+func RedisDB() int {
+	db, _ := strconv.Atoi(os.Getenv("REDIS_DB"))
+	return db
+}
+
+// RedisMaxIdle :nodoc:
+func RedisMaxIdle() int {
+	mi, _ := strconv.Atoi(os.Getenv("REDIS_MAX_IDLE"))
+	return mi
+}
+
+// RedisMaxActive :nodoc:
+func RedisMaxActive() int {
+	ma, _ := strconv.Atoi(os.Getenv("REDIS_MAX_ACTIVE"))
+	return ma
+}
+
+// RedisTTL :nodoc:
+func RedisTTL() int {
+	ttl, _ := strconv.Atoi(os.Getenv("REDIS_TTL"))
+	return ttl
 }

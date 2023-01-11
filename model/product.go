@@ -17,6 +17,7 @@ var DefaultProductSort = "created_at desc"
 type ProductRepository interface {
 	Create(product *Product) error
 	FindAll(req *ProductQuery) (products *[]Product, err error)
+	FindByID(id string) (product *Product, err error)
 }
 
 // ProductUsecase :nodoc:
