@@ -32,6 +32,7 @@ func initPostgreMock() (db *gorm.DB, mock sqlmock.Sqlmock) {
 	return
 }
 
+// TestProductRepo_Create :nodoc:
 func TestProductRepo_Create(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -78,6 +79,7 @@ func TestProductRepo_Create(t *testing.T) {
 
 }
 
+// TestProductRepo_FindAll :nodoc:
 func TestProductRepo_FindAll(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()

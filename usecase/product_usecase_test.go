@@ -28,6 +28,7 @@ func initPostgreMock() (db *gorm.DB, mock sqlmock.Sqlmock) {
 	return
 }
 
+// TestProductUsecase_Create :nodoc:
 func TestProductUsecase_Create(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -65,6 +66,7 @@ func TestProductUsecase_Create(t *testing.T) {
 	})
 }
 
+// TestProductUsecase_FindAll :nodoc:
 func TestProductUsecase_FindAll(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()

@@ -37,11 +37,12 @@ func (h *HTTPService) createProductHandler(c echo.Context) error {
 		})
 	}
 
-	return utils.ResponseOK(c, &utils.ResponseSuccess{
+	return utils.ResponseCreated(c, &utils.ResponseSuccess{
 		Data: id,
 	})
 }
 
+// findAllProductHandler :nodoc:
 func (h *HTTPService) findAllProductHandler(c echo.Context) error {
 	logger := logrus.WithField("context", utils.Dump(c))
 

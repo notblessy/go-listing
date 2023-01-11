@@ -4,11 +4,13 @@ import (
 	"time"
 )
 
+// ProductSortValidValues valid sort values
 var ProductSortValidValues = map[string]bool{
 	"price": true,
 	"name":  true,
 }
 
+// DefaultProductSort a default product sort
 var DefaultProductSort = "created_at desc"
 
 // ProductRepository :nodoc:
@@ -17,6 +19,7 @@ type ProductRepository interface {
 	FindAll(req *ProductQuery) (products *[]Product, err error)
 }
 
+// ProductUsecase :nodoc:
 type ProductUsecase interface {
 	Create(product *Product) (string, error)
 	FindAll(req *ProductQuery) (products *[]Product, err error)
