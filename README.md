@@ -10,18 +10,18 @@ go-listing is an simple app built with golang to create product & get product li
 
 ## Architecture
 - go-listing uses a clean architecture referenced by go-clean-arch `https://github.com/bxcodec/go-clean-arch`. It has 4 doman layers such
-  1. Models Layer
-  2. Repository Layer
-  3. Usecase Layer
-  4. Delivery Layer
+  - Models Layer
+  - Repository Layer
+  - Usecase Layer
+  - Delivery Layer
 
 - Here's some reason why referencing go-clean-arch:
-  1. Easily testable:
+  - Easily testable:
       - Domains are easly and independently testable.
-  2. Maintainable
+  - Maintainable
       - A way more organized code. Even with separated layers, still encapsulates logic business that may not affect other logic when having updates/changes.
-  3. Easier to understand.
-      - Coded should not depend on one developer. Readable codes will saves time and effort of developers in future.
+  - Easier to understand.
+      - Code should not depend on one developer. Readable codes will saves time and effort of developers in future.
 
 ## Stacks
 
@@ -38,11 +38,9 @@ First clone this repo by run:
 ```sh
 $ git clone git@github.com:notblessy/mini-wallet.git
 ```
-#
 
 ## Run go-listing in local
 #
-
 ### Init
 
 Firstly, run:
@@ -54,7 +52,7 @@ $ go mod tidy
 ### Environment
 
 - The sample environments are provided in root folder
-  1. If you run go-listing in local, use `env.sample` to be `.env` file.
+  - If you run go-listing in local, use `env.sample` to be `.env` file.
 
 ### Database Migration
 
@@ -70,11 +68,9 @@ $ make migration
 ```sh
 $ make run
 ```
-#
 
 ## Run go-listing in Docker
 #
-
 ### Environment
 
 - The sample environments are provided in root folder
