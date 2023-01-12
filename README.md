@@ -101,8 +101,13 @@ $ make migration
 ```sh
 $ docker-compose up
 ```
-
 #
+## Unit Test
+
+- To run unit test, hit:
+```sh
+$ make test
+```
 ## API Documentations
 
 - To test the API, import `postman collection` from folder `api-docs/`. All the API is available there.
