@@ -1,0 +1,53 @@
+version: '3.9'
+services:
+  app:
+    container_name: golisting_container
+    environment:
+      - DATABASE_HOST=${DB_HOST}
+      - DATABASE_PORT=${DB_PORT}
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_DB=${REDIS_DB}
+      - REDIS_MAX_IDLE=${REDIS_MAX_IDLE}
+      - REDIS_MAX_ACTIVE=${REDIS_MAX_ACTIVE}
+      - REDIS_TTL=${REDIS_TTL}
+    tty: true
+    build: .
+    ports:
+      - 8181:8181
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      - postgresdb
+      - redis
+    networks:
+      - golisting_net
+
+  postgresdb:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      - DATABASE_PORT=${DB_PORT}
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5433:5432'
+    networks:
+      - golisting_net
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock    
+    ports:
+      - 6380:6379  
+    networks:
+      - golisting_net
+networks:
+  golisting_net:
+    driver: bridge
