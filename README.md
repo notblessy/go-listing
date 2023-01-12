@@ -9,7 +9,7 @@ go-listing is an simple app built with golang to create product & get product li
 - Run in Docker
 
 ## Architecture
-- go-listing uses a clean architecture referenced by go-clean-arch `https://github.com/bxcodec/go-clean-arch`. It has 4 doman layers such
+- go-listing uses a clean architecture referenced by go-clean-arch `https://github.com/bxcodec/go-clean-arch`. It has 4 domain layers such
   - Models Layer
   - Repository Layer
   - Usecase Layer
@@ -40,7 +40,6 @@ $ git clone git@github.com:notblessy/mini-wallet.git
 ```
 
 ## Run go-listing in local
-#
 ### Init
 
 Firstly, run:
@@ -70,7 +69,6 @@ $ make run
 ```
 
 ## Run go-listing in Docker
-#
 ### Environment
 
 - The sample environments are provided in root folder
